@@ -1,0 +1,301 @@
+@charset "utf-8";
+
+/*
+    mapit colors
+    main: #5389d6;
+    background-color: #f3efe0;
+    
+*/
+
+/* map it 専用 */
+body {
+    padding-top: 50px;
+}
+
+h1, h2{
+    padding: 1em;
+    text-align:center;
+    color: #5389d6;
+}
+
+h3 {
+     color: #5389d6;   
+}
+
+.mapit-panel {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 8px gray;
+}
+
+.cover {
+    width:100%;
+    height:230px;
+    background: url("/images/cover.jpg") center center no-repeat;
+    background-size: cover;
+}
+
+.cover .cover-inner {
+  height: 100%;
+  margin: auto;
+  display: table;
+  width: 100%;
+}
+
+.cover .cover-inner .cover-contents h1 {
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 20px 0;
+  padding: 0.8em 0 0.8em 0;
+  color: #5389d6;
+  font-size: 1.3em;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+}
+
+.cover .cover-inner .cover-contents {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+    .cover {
+    width:100%;
+    height:230px;
+    background: url("/images/cover.jpg") center center no-repeat;
+    background-size: cover;
+    }
+    
+    .cover .cover-inner {
+      height: 100%;
+      margin: auto;
+      display: table;
+      width: 100%;
+    }
+    
+    .cover .cover-inner .cover-contents h1 {
+      background-color: rgba(255, 255, 255, 0.5);
+      margin: 0 0 20px 0;
+      padding: 0.8em 0 0.8em 0;
+      color: #5389d6;
+      font-weight: bold;
+      font-size: 2em;
+      letter-spacing: 0.15em;
+    }
+    
+    .cover .cover-inner .cover-contents {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      position: relative;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .cover {
+        width:100%;
+        height:230px;
+        background: url("/images/cover.jpg") center center no-repeat;
+        background-size: contain;
+    }
+    
+    .cover .cover-inner {
+      height: 100%;
+      margin: auto;
+      display: table;
+      width: 900px;
+    }
+    
+    .cover .cover-inner .cover-contents h1 {
+      background-color: rgba(255, 255, 255, 0.5);
+      margin: 0 0 20px 0;
+      padding: 0.8em 0 0.8em 0;
+      color: #5389d6;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+    }
+    
+    .cover .cover-inner .cover-contents {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      position: relative;
+    }
+}
+
+.main{
+    padding-top: 5px;
+}
+
+.clearfix::after {
+    display: block;
+    clear: both;
+}
+
+
+.plus-icon {
+    float: right;
+    cursor: pointer;
+    font-size: 1.8em;
+    padding: 1em 0 1em 0;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.plus-icon:hover {
+    color: white;
+}
+
+.open-menu {
+    width: 30px;
+    height: 40px;
+    background-color: #5389d6;
+    border-radius: 0 8px 8px 0;
+    font-size: 1.3em;
+    color: #ffffff;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    border-style: none;
+}
+
+.open-menu:hover {
+    background-color: #ffffff;
+    color: #5389d6;
+}
+
+
+/* slider transitions のカスタマイズ */
+.st-container {
+    padding-top: 50px;
+}
+
+/* bootstrap カラー変更 */
+
+.navbar {
+    box-shadow: 0 0 15px gray;
+}
+
+/* navbar 全体の背景色とボーダーカラー */
+.navbar-inverse {
+    background-color: #5389d6;
+    border-color: #5389d6;
+}
+
+/* navbar テキストカラー */
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav .sign-inout {
+    padding: 5px;
+    margin-top: 7px;
+    border-color: white;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10%;
+}
+
+.navbar-inverse .navbar-nav .sign-inout:focus, 
+.navbar-inverse .navbar-nav .sign-inout:hover {
+    background-color: #ffffff;
+    border-color: #286bcc;
+    color: #5389d6;;
+}
+
+/* navbar Brandのカラー */
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+    font-size: 2.0em;
+}
+
+.navbar-inverse .navbar-brand:focus,
+.navbar-inverse .navbar-brand:hover {
+    color: #a9c4eb;
+    background-color: transparent;
+}
+
+/* navbar hover,focus時のテキストカラー */
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+    color: #a9c4eb;
+    background-color: transparent;
+}
+
+/* navbar ドロップダウン(親)のカラー */
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-inverse .navbar-nav>.open>a:hover
+{
+    color: #3e6962;
+    background-color: #c3ede7;
+}
+
+/* navbar ドロップダウン(子)のボックスカラー */
+.dropdown-menu {
+    background-color: #65baad;
+    border: 1px solid #3e6962;
+    border: 1px solid #3e6962(0, 0, 0, .15);
+    -webkit-box-shadow: 0 6px 12px rgba(94, 136, 129, 0.35);
+    box-shadow: 0 6px 12px rgba(94, 136, 129, 0.35);
+}
+
+/* navbar ドロップダウン(子)テキストカラー */
+.dropdown-menu>li>a {
+    color: #ffffff;
+}
+/* navbar ドロップダウン(子)focus,hover時のカラー */
+.dropdown-menu>li>a:focus,
+.dropdown-menu>li>a:hover {
+    color: #26534c;
+    background-color: #c3ede7;
+}
+/* navbar ドロップダウン(子)内の区切り線(class=”divider”)のカラー */
+    .dropdown-menu .divider {
+    background-color: #3e6962;
+}
+/* navbar 画面サイズ767px以下の時のカラー */
+@media (max-width:767px) {
+    .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+    color: #ffffff;
+    }
+    .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus,
+    .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover {
+        color: #26534c;
+        background-color: transparent;
+    }
+    /* ドロップダウンactive設定時のカラー */
+    .navbar-inverse .navbar-nav .open .dropdown-menu>.active>a,
+    .navbar-inverse .navbar-nav .open .dropdown-menu>.active>a:focus,
+    .navbar-inverse .navbar-nav .open .dropdown-menu>.active>a:hover {
+        color: #ffb163;
+        background-color: #d4ede9;
+    }
+}
+
+/* navbar ハンバーガー四角枠 */
+.navbar-inverse .navbar-toggle {
+    border-color: #ffffff;
+}
+/* navbar ハンバーガー三本線 */
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #ffffff;
+}
+/* navbar ハンバーガーボタン,タップとホバーした時の背景色 */
+.navbar-inverse .navbar-toggle:focus,
+.navbar-inverse .navbar-toggle:hover {
+    background-color: #ffffff;
+}
+/* navbar ハンバーガーボタン,タップとホバーした時の四角枠 */
+.navbar-inverse .navbar-toggle:focus,
+.navbar-inverse .navbar-toggle:hover {
+    border-color: #5389d6;
+}
+/* navbar ハンバーガーボタン,タップとホバーした時の三本線 */
+.navbar-inverse .navbar-toggle:focus > .icon-bar,
+.navbar-inverse .navbar-toggle:hover > .icon-bar {
+    background-color: #5389d6;
+}
+
+
