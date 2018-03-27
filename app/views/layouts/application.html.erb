@@ -22,14 +22,20 @@
   <body>
     <%= render 'layouts/header' %>
     
+    <% if logged_in? %>
+      <%= render 'sessions/signout' %>
+    <% else %>
+      <%= render 'sessions/signin' %>
+    <% end %>
+
     <%= yield :cover %>
     
     <div class="container">
-      
+      <%= render 'layouts/flash_messages' %>
       <%= yield %>
-      
+
     </div>
-    <%= render 'layouts/footer' %>
+    <!-- <%= render 'layouts/footer' %> -->
   </body>
   
  <%= javascript_include_tag 'application' %>
