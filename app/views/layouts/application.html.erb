@@ -24,18 +24,24 @@
     
     <% if logged_in? %>
       <%= render 'sessions/signout' %>
+      
+      <%= render 'layouts/sidemenu_layout' %>
+      
     <% else %>
-      <%= render 'sessions/signin' %>
+      <div class="adjustcontainer">
+        <%= render 'sessions/signin' %>
+        
+        <%= yield :cover %>
+      
+        <div class="container">
+          
+          <%= render 'layouts/flash_messages' %>
+          <%= yield %>
+          
+        </div>
+        <%= render 'layouts/footer' %>
+      </div>
     <% end %>
-
-    <%= yield :cover %>
-    
-    <div class="container">
-      <%= render 'layouts/flash_messages' %>
-      <%= yield %>
-
-    </div>
-    <!-- <%= render 'layouts/footer' %> -->
   </body>
   
  <%= javascript_include_tag 'application' %>

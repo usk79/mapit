@@ -16,11 +16,12 @@ body,
 
 
 .main {
-	padding-bottom: 50px;
+	padding-bottom: 35px;
 }
 
 .st-content {
-	overflow: auto;
+	/* overflow: auto; */
+	overflow-y: auto;
 	background: #f3efe0;
 
 }
@@ -28,6 +29,7 @@ body,
 .st-content,
 .st-content-inner {
 	position: relative;
+	min-height: 100%;
 }
 
 .st-container {
@@ -35,7 +37,7 @@ body,
 	position: fixed;
 	top: 0px;
 	height: 100%;
-	overflow: auto;
+	overflow: hidden;
 
 	width:100%;
 }
