@@ -1,0 +1,21 @@
+
+.collection_name {
+  margin: 20px 50px 10px 40px;
+  padding: 0;
+  text-align:left;
+  color: #5389d6;
+  font-size: 2em;
+}
+
+.collection_name:after{
+  background-color: #5389d6;
+  border-radius: 3px; /* 線幅の半分 */
+  content: "";
+  display: block;
+  height: 6px;
+}
+
+.gmap_container {
+  padding: 0px;
+
+}

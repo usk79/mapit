@@ -25,7 +25,7 @@
     <% if logged_in? %>
       <%= render 'sessions/signout' %>
       
-      <%= render 'layouts/sidemenu_layout' %>
+      <%= yield %>
       
     <% else %>
       <div class="adjustcontainer">

@@ -15,10 +15,6 @@ body,
 }
 
 
-.main {
-	padding-bottom: 35px;
-}
-
 .st-content {
 	/* overflow: auto; */
 	overflow-y: auto;
@@ -33,7 +29,6 @@ body,
 }
 
 .st-container {
-	padding-top: 50px;
 	position: fixed;
 	top: 0px;
 	height: 100%;

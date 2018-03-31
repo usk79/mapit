@@ -1,0 +1,114 @@
+<h1 class="collection_name">コレクション名</h1>
+<div class="gmap_container">
+  <div id="map" style="width: 100%; height: 400px;"></div>
+</div>
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAIJfGcO2u5nHVWO-b7O4pAfPrta3U3EHc&callback=initMap" async defer></script>
+<script>
+  
+  function initMap(){
+    'use strict';
+    
+    var target = document.getElementById('map');
+    var map;
+    var places = <%= Point.to_json_for_gmap(Point.all).html_safe %>
+    var marker;
+    var center_pos = {"lat": 35.15520, "lng": 136.726953};
+    
+    map = new google.maps.Map(target, {
+      center: center_pos,
+      zoom: 7,
+      clickableIcons: false,
+      fullscreenControl: false,
+      streetViewControl: false
+    });
+    
+    places.forEach(function(val){
+      var marker = new google.maps.Marker({
+        position: val.pos,
+        map: map,
+        title: val.description,
+        icon: {
+          url: 'images/pin_rd.png',
+        	scaledSize: new google.maps.Size(20, 33)
+        }
+      });
+    });
+    
+    map.addListener('click', addMarker);
+    
+    function addMarker(e) {
+      
+      var marker = new google.maps.Marker({
+        position: e.latLng,
+        map: this,
+        content: e.latLng.toString(),
+        animation: google.maps.Animation.DROP,
+        icon: {
+        		url: 'images/pin_bl.png',
+        		scaledSize: new google.maps.Size(20, 33)
+        	}
+      })
+      
+      var info_content = `
+        <form action="/points/new" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+          <input type="hidden" name="addPointLat" id="addPointLat" value="${e.latLng.lat()}">
+          <input type="hidden" name="addPointLng" id="addPointLng" value="${e.latLng.lng()}">
+          <input type="submit" name="commit" value="コレクションする" class="btn btn-primary" data-disable-with="コレクションする">
+        </form>`;
+
+      var infoWindow = new google.maps.InfoWindow({
+        content: info_content
+      });
+      // 情報ウインドウ表示
+      marker.addListener('click', function(){
+        infoWindow.open(map, marker);
+      })
+      // マーカー右クリックでマーカーを削除
+      marker.addListener('rightclick', function() {
+        this.setMap(null);
+      });
+      // タッチパネル用ロングタップ検出
+      var start, end;
+      marker.addListener('mousedown', function(){
+        start = new Date().getTime();
+      });
+      
+      marker.addListener('mouseup', function(){
+        if (start) {
+            end = new Date().getTime();
+            if (end - start > 500) {
+              this.setMap(null);
+            }
+        }
+      });
+    }
+  }
+  
+</script>
+
+<!--
+
+   /* map.addListener('click', function(e) {
+      marker = new google.maps.Marker({
+        position: e.latLng,
+        map: map,
+        content: e.latLng.toString(),
+        animation: google.maps.Animation.DROP,
+        icon: {
+        		url: 'images/pin_bl.png',
+        		scaledSize: new google.maps.Size(20, 33)
+        	}
+      })
+      
+      marker.addListener('click', function() {
+        this.setMap(null);
+      });
+      
+     // this.panTo(e.latLng)
+    });
+    */
+
+-->
+
+    

@@ -8,9 +8,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-
-      
-        <a class="navbar-brand" href="/">Map It !</a>
+        
+        <% if logged_in? %>
+          <%= link_to 'Map It !', dummy_path, class: "navbar-brand" %>
+        <% else %>
+          <%= link_to 'Map It !', root_url, class: "navbar-brand" %>
+        <% end %>
+        
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">

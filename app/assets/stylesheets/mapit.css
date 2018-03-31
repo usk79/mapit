@@ -11,6 +11,7 @@
 /* map it 専用 */
 body {
     padding-top: 50px;
+    background-color: #f3efe0;
 }
 
 h1, h2{
@@ -35,8 +36,6 @@ h3 {
     border: 0px;
 }
 
-
-
 .mapit-panel {
     padding: 20px;
     background-color: #fff;
@@ -46,6 +45,20 @@ h3 {
 .transparent {
     background-color: rgba(255, 255, 255, 0.5);
 }
+
+/* フォーム関係 */
+.formcontainer {
+    background-color: #ffffff;
+    box-shadow: 0 0 2px gray;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.form-group {
+    padding: 10px 10px 0 10px;
+}
+
+
 
 .cover {
     width:100%;
@@ -150,8 +163,8 @@ h3 {
 }
 
 .main{
-    padding-top: 5px;
-    padding-left: 35px; /* open menu width = 30px*/
+    padding: 5px 5px 5px 15px;
+    /*padding-left: 35px; /* open menu width = 30px*/
 }
 
 .clearfix::after {
@@ -174,11 +187,16 @@ h3 {
 }
 
 #st-trigger-effects {
-    position: fixed;
-    padding-top: 10px;
+    margin-top: 65px;
+    position:fixed;
     left: 0px;
+    height: 100px;
+    padding: 0px;
+    display: table-cell;
+    vertical-align: middle;
 }
 
+/* open-menu tabstyle
 .open-menu {
     width: 30px;
     height: 40px;
@@ -190,13 +208,33 @@ h3 {
     outline: none;
     cursor: pointer;
     border-style: none;
+
 }
 
 .open-menu:hover {
     background-color: #ffffff;
     color: #5389d6;
 }
+*/
+.open-menu {
+    width: 10px;
+    height: 100%;
+    background-color: #5389d6;
+    border-radius: 0 8px 8px 0;
+    padding: 0;
+    font-size: 0.8em;
+    color: #ffffff;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    border-style: none;
 
+}
+
+.open-menu:hover {
+    background-color: #ffffff;
+    color: #5389d6;
+}
 
 /* slider transitions のカスタマイズ */
 .st-container {
@@ -219,7 +257,7 @@ h3 {
 }
 
 .navbar {
-    box-shadow: 0 2px 2px gray;
+    box-shadow: 0 1px 1px gray;
 }
 
 /* navbar 全体の背景色とボーダーカラー */
