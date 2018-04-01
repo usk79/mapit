@@ -52,13 +52,19 @@ h3 {
     box-shadow: 0 0 2px gray;
     border-radius: 8px;
     margin: 10px;
+    padding-bottom: 10px;
 }
 
 .form-group {
     padding: 10px 10px 0 10px;
 }
 
-
+.photo-form-box {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
 
 .cover {
     width:100%;

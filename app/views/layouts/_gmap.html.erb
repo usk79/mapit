@@ -11,7 +11,7 @@
     
     var target = document.getElementById('map');
     var map;
-    var places = <%= Point.to_json_for_gmap(Point.all).html_safe %>
+    var points = <%= Point.to_json_for_gmap(Point.all).html_safe %>
     var marker;
     var center_pos = {"lat": 35.15520, "lng": 136.726953};
     
@@ -22,8 +22,8 @@
       fullscreenControl: false,
       streetViewControl: false
     });
-    
-    places.forEach(function(val){
+    // 登録済みのポイント一覧
+    points.forEach(function(val){
       var marker = new google.maps.Marker({
         position: val.pos,
         map: map,
@@ -34,7 +34,7 @@
         }
       });
     });
-    
+    // 新規のポイント
     map.addListener('click', addMarker);
     
     function addMarker(e) {
@@ -42,6 +42,7 @@
       var marker = new google.maps.Marker({
         position: e.latLng,
         map: this,
+        title: '右クリックorロングタップで消せます!',
         content: e.latLng.toString(),
         animation: google.maps.Animation.DROP,
         icon: {
