@@ -8,6 +8,7 @@
   <div class="container">
     <%= form_for(@point) do |f| %>
       <div class="row">
+        <!-- Description -->
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0">
           <div class="form-group">
             <%= f.label :name, 'ポイント名' %>
@@ -16,12 +17,17 @@
   
           <div class="form-group">
             <%= f.label :lat, '緯度' %>
-            <%= f.number_field :lat, id: 'lat-field',class: 'form-control', value: params[:addPointLat] %>
+            <%= f.number_field :lat, id: 'lat-field',class: 'form-control', value: params[:addPointLat], placeholder: '緯度(自動入力)' %>
           </div>
   
           <div class="form-group">
             <%= f.label :lng, '経度' %>
-            <%= f.number_field :lng, id: 'lng-field', class: 'form-control', value: params[:addPointLng] %>
+            <%= f.number_field :lng, id: 'lng-field', class: 'form-control', value: params[:addPointLng], placeholder: '経度(自動入力)' %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :address, '住所' %>
+            <%= f.text_field :address, id: 'addr-field', class: 'form-control', placeholder: '住所(自動入力)' %>
           </div>
           
           <div class="form-group">
@@ -29,7 +35,7 @@
             <%= f.text_area :description, class: 'form-control', rows:8, placeholder: '場所の詳しい説明やメモなど' %>
           </div>
         </div>
-        
+        <!-- PhotoBox -->
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0">
           <div class="form-group">
             <%= f.label :description, '写真投稿' %>
@@ -68,12 +74,16 @@
     var latField = document.getElementById('lat-field');
     var lngField = document.getElementById('lng-field');
     
+
+    
     <% # points/newのページに直接アクセスした場合 %>
     if (center_pos.lat == null || center_pos.lng == null) {  
       center_pos = {lat: 35.681431, lng: 139.7668504} // 東京駅
       latField.value = center_pos.lat;
       lngField.value = center_pos.lng;
     }
+    
+    setAddress(new google.maps.LatLng(latField.value, lngField.value) );
     
     map = new google.maps.Map(target, {
       center: center_pos,
@@ -88,7 +98,7 @@
       var marker = new google.maps.Marker({
         position: val.pos,
         map: map,
-        title: val.description,
+        title: val.name,
         icon: {
           url: '../images/pin_rd.png',
         	scaledSize: new google.maps.Size(20, 33)
@@ -111,16 +121,32 @@
     google.maps.event.addListener( marker, 'dragend', function(e) {
       latField.value = e.latLng.lat();
       lngField.value = e.latLng.lng();
+      setAddress(new google.maps.LatLng(latField.value, lngField.value) );
     });
-   
+    
     // 緯度経度テキストボックスの入力が変化したら
     latField.addEventListener( "input", moveMarker ) ;
     lngField.addEventListener( "input", moveMarker ) ;
     
     function moveMarker() {
       marker.setPosition( new google.maps.LatLng(latField.value, lngField.value));
+      setAddress(new google.maps.LatLng(latField.value, lngField.value) );
     }
     
+    function setAddress(latLng) {
+      var geocoder = new google.maps.Geocoder();
+      var addrField = document.getElementById('addr-field')
+    
+      geocoder.geocode({ location: latLng }, 
+        function(results, status){
+          if (status !== 'OK' || !results[0]) {
+            addrField.value = '住所を取得できませんでした。';
+          }
+          else {
+            addrField.value = results[0].formatted_address;
+          }
+        });  
+    }
     
   }
   

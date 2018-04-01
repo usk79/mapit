@@ -26,10 +26,15 @@ class PointsController < ApplicationController
     
   end
   
+  def show
+    @point = Point.find(params[:id])
+    @points = Point.where.not(id: @point.id)
+  end
+  
   private
   
   def point_params
-    prms = params.require(:point).permit(:name, :lat, :lng, :description)
+    prms = params.require(:point).permit(:name, :lat, :lng, :description, :address)
     
     prms[:created_by] = current_user.id
     

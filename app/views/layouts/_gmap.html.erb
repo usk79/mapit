@@ -13,7 +13,7 @@
     var map;
     var points = <%= Point.to_json_for_gmap(Point.all).html_safe %>
     var marker;
-    var center_pos = {"lat": 35.15520, "lng": 136.726953};
+    var center_pos = <%= Point.get_gravity_center(Point.all).html_safe %>
     
     map = new google.maps.Map(target, {
       center: center_pos,
@@ -22,7 +22,8 @@
       fullscreenControl: false,
       streetViewControl: false
     });
-    // 登録済みのポイント一覧
+    
+    // 登録されている全ポイントのマーカーを作成
     points.forEach(function(val){
       var marker = new google.maps.Marker({
         position: val.pos,
@@ -32,6 +33,14 @@
           url: 'images/pin_rd.png',
         	scaledSize: new google.maps.Size(20, 33)
         }
+      });
+
+      var infoWindow = new google.maps.InfoWindow({
+        content: `<a href="points/${val.id}" class="btn btn-primary">詳細</a>`
+      });
+      
+      marker.addListener('click', function(){
+        infoWindow.open(map, marker);
       });
     });
     // 新規のポイント
@@ -49,7 +58,7 @@
         		url: 'images/pin_bl.png',
         		scaledSize: new google.maps.Size(20, 33)
         	}
-      })
+      });
       
       var info_content = `
         <form action="/points/new" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
@@ -61,6 +70,9 @@
       var infoWindow = new google.maps.InfoWindow({
         content: info_content
       });
+      
+      infoWindow.open(map, marker);
+      
       // 情報ウインドウ表示
       marker.addListener('click', function(){
         infoWindow.open(map, marker);
