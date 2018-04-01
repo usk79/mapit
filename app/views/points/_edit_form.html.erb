@@ -1,0 +1,172 @@
+<h1 class="collection_name">コレクション名</h1>
+
+<div class="gmap_container">
+  <div id="map" style="width: 100%; height: 300px;"></div>
+</div>
+
+<div class="formcontainer">
+  <div class="container">
+    <%= form_for(@point) do |f| %>
+      <div class="row">
+        <!-- Description -->
+        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0">
+          <div class="form-group">
+            <%= f.label :name, 'ポイント名' %>
+            <%= f.text_field :name, class: 'form-control', placeholder: 'ポイントの名前 (任意)' %>
+          </div>
+  
+          <div class="form-group">
+            <%= f.label :lat, '緯度' %>
+            <%= f.number_field :lat, id: 'lat-field',class: 'form-control', value: @point.lat, placeholder: '緯度(自動入力)' %>
+          </div>
+  
+          <div class="form-group">
+            <%= f.label :lng, '経度' %>
+            <%= f.number_field :lng, id: 'lng-field', class: 'form-control', value: @point.lng, placeholder: '経度(自動入力)' %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :address, '住所' %>
+            <%= f.text_field :address, id: 'addr-field', class: 'form-control', placeholder: '住所(自動入力)' %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :description, '説明' %>
+            <%= f.text_area :description, class: 'form-control', rows:8, placeholder: '場所の詳しい説明やメモなど' %>
+          </div>
+        </div>
+        <!-- PhotoBox -->
+        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0">
+          <div class="form-group">
+            <%= f.label :description, '写真投稿' %>
+            <div class="photo-form-box">未実装</div>
+          </div>
+          <div class="col-xs-2 col-xs-offset-4">
+            <div class="btn btn-primary">写真を開く</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="point_btns_container">
+        <div class="row">
+          <% if type == :new %>
+            <%= render 'points/save_msg', f: f %>
+            <div class="col-xs-2 col-xs-offset-8">
+              <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#save_dialog">保存</button>
+            </div>
+            <div class="col-xs-2">
+              <%= link_to '戻る', dummy_url, class: 'btn btn-default btn-block'%>
+              <% #TODO: dummy修正 %>
+            </div>
+          <% elsif type == :edit %>
+            <%= render 'points/update_msg', f: f %>
+            <%= render 'points/delete_msg' %>
+            
+            <div class="col-xs-2 col-xs-offset-6">
+              <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#update_dialog">保存</button>
+            </div>
+            <div class="col-xs-2">
+              <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#delete_dialog">削除</button>
+            </div>
+            <div class="col-xs-2">
+              <%= link_to '戻る', dummy_url, class: 'btn btn-default btn-block'%>
+              <% #TODO: dummy修正 %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAIJfGcO2u5nHVWO-b7O4pAfPrta3U3EHc&callback=initMap" async defer></script>
+<script>
+  
+  function initMap(){
+    'use strict';
+    
+    var target = document.getElementById('map');
+    var map;
+    var point = <%= Point.to_json_for_gmap(@point).html_safe %>
+    var points = <%= Point.to_json_for_gmap(@points).html_safe %>
+    var marker;
+    var center_pos = point.pos;
+    var latField = document.getElementById('lat-field');
+    var lngField = document.getElementById('lng-field');
+    
+
+    
+    <% # points/newのページに直接アクセスした場合 %>
+    if (center_pos.lat == null || center_pos.lng == null) {  
+      center_pos = {lat: 35.681431, lng: 139.7668504} // 東京駅
+      latField.value = center_pos.lat;
+      lngField.value = center_pos.lng;
+    }
+    
+    setAddress(new google.maps.LatLng(latField.value, lngField.value) );
+    
+    map = new google.maps.Map(target, {
+      center: center_pos,
+      zoom: 13,
+      clickableIcons: false,
+      fullscreenControl: false,
+      streetViewControl: false,
+      gestureHandling: "greedy"  // ctrlキーなしでスクロール
+    });
+    
+    points.forEach(function(val){
+      var marker = new google.maps.Marker({
+        position: val.pos,
+        map: map,
+        title: val.name,
+        icon: {
+          url: "<%= root_url %>" + '/images/pin_rd.png',
+        	scaledSize: new google.maps.Size(20, 33)
+        }
+      });
+    });
+    
+    var marker = new google.maps.Marker({
+        position: center_pos,
+        map: map,
+        title: 'ドラッグで位置を変えられます！',
+        icon: {
+          url: "<%= root_url %>" + '/images/pin_bl.png',
+        	scaledSize: new google.maps.Size(20, 33)
+        },
+        draggable: true
+    });
+    
+    // マーカードラッグ終了イベント
+    google.maps.event.addListener( marker, 'dragend', function(e) {
+      latField.value = e.latLng.lat();
+      lngField.value = e.latLng.lng();
+      setAddress(new google.maps.LatLng(latField.value, lngField.value) );
+    });
+    
+    // 緯度経度テキストボックスの入力が変化したら
+    latField.addEventListener( "input", moveMarker ) ;
+    lngField.addEventListener( "input", moveMarker ) ;
+    
+    function moveMarker() {
+      marker.setPosition( new google.maps.LatLng(latField.value, lngField.value));
+      setAddress(new google.maps.LatLng(latField.value, lngField.value) );
+    }
+    
+    function setAddress(latLng) {
+      var geocoder = new google.maps.Geocoder();
+      var addrField = document.getElementById('addr-field')
+    
+      geocoder.geocode({ location: latLng }, 
+        function(results, status){
+          if (status !== 'OK' || !results[0]) {
+            addrField.value = '住所を取得できませんでした。';
+          }
+          else {
+            addrField.value = results[0].formatted_address;
+          }
+        });  
+    }
+    
+  }
+  
+</script>

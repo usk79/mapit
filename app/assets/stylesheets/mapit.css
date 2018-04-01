@@ -60,6 +60,7 @@ h3 {
 }
 
 .photo-form-box {
+    margin-top: 20px;
     width: 100%;
     height: 300px;
     border: 1px solid #ccc;
@@ -70,7 +71,7 @@ h3 {
     padding-top: 10px;
 }
 .pointlabel {
-    margin-top: 5px;
+    margin-top: 10px;
     font-weight: 700;
     color: #000;
 }
@@ -86,6 +87,12 @@ h3 {
 
 .point_tbllabel {
     font-weight: 700;
+}
+
+.point_btns_container {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
 }
 
 /* カバー画像関連 */
