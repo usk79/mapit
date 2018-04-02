@@ -10,7 +10,7 @@
         </button>
         
         <% if logged_in? %>
-          <%= link_to 'Map It !', dummy_path, class: "navbar-brand" %>
+          <%= link_to 'Map It !', my_collections_url, class: "navbar-brand" %>
         <% else %>
           <%= link_to 'Map It !', root_url, class: "navbar-brand" %>
         <% end %>

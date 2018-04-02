@@ -53,8 +53,7 @@
           <%= link_to '編集', edit_point_url, class: 'btn btn-primary btn-block' %>
         </div>
         <div class="col-xs-2">
-          <%= link_to '戻る', dummy_url, class: 'btn btn-default btn-block'%>
-          <% #TODO: dummy修正 %>
+          <%= link_to '戻る', my_collections_url, class: 'btn btn-default btn-block'%>
         </div>
     </div>
     
@@ -77,7 +76,7 @@
     var point = <%= Point.to_json_for_gmap(@point).html_safe %>
     var points = <%= Point.to_json_for_gmap(@points).html_safe %>
     var marker;
-    var center_pos = point.pos;
+    var center_pos = point[0].pos;
     var latField = document.getElementById('lat-field');
     var lngField = document.getElementById('lng-field');
     

@@ -86,6 +86,7 @@ h3 {
 }
 
 .point_tbllabel {
+    width: 100px;
     font-weight: 700;
 }
 

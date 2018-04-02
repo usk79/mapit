@@ -55,8 +55,7 @@
               <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#save_dialog">保存</button>
             </div>
             <div class="col-xs-2">
-              <%= link_to '戻る', dummy_url, class: 'btn btn-default btn-block'%>
-              <% #TODO: dummy修正 %>
+              <%= link_to '戻る', my_collections_url, class: 'btn btn-default btn-block'%>
             </div>
           <% elsif type == :edit %>
             <%= render 'points/update_msg', f: f %>
@@ -69,8 +68,7 @@
               <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#delete_dialog">削除</button>
             </div>
             <div class="col-xs-2">
-              <%= link_to '戻る', dummy_url, class: 'btn btn-default btn-block'%>
-              <% #TODO: dummy修正 %>
+              <%= link_to '戻る', point_path, class: 'btn btn-default btn-block'%>
             </div>
           <% end %>
         </div>
@@ -89,7 +87,7 @@
     var point = <%= Point.to_json_for_gmap(@point).html_safe %>
     var points = <%= Point.to_json_for_gmap(@points).html_safe %>
     var marker;
-    var center_pos = point.pos;
+    var center_pos = point[0].pos;
     var latField = document.getElementById('lat-field');
     var lngField = document.getElementById('lng-field');
     

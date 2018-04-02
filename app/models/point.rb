@@ -12,7 +12,7 @@ class Point < ApplicationRecord
         data.push({id: point.id, description: point.name, pos:{lat: point.lat, lng: point.lng}})
       end
     elsif arg.class == Point
-      data = {id: arg.id, description: nil, pos:{lat: arg.lat, lng: arg.lng}}
+      data = [{id: arg.id, description: nil, pos:{lat: arg.lat, lng: arg.lng}}]
     end
       
     data.to_json
@@ -22,12 +22,18 @@ class Point < ApplicationRecord
     lat_sum = 0
     lng_sum = 0
     
-    arg.each do |point|
-      lat_sum += point.lat
-      lng_sum += point.lng
+    if arg.class == ActiveRecord_Relation
+      
+      arg.each do |point|
+        lat_sum += point.lat
+        lng_sum += point.lng
+      end
+      
+      {lat: lat_sum / arg.size, lng: lng_sum / arg.size}.to_json
+    elsif arg.class == Point
+      {lat: arg.lat, lng: arg.lng}.to_json
     end
-    
-    {lat: lat_sum / arg.size, lng: lng_sum / arg.size}.to_json
+  
   end
   
 end

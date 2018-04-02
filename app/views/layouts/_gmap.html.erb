@@ -11,9 +11,9 @@
     
     var target = document.getElementById('map');
     var map;
-    var points = <%= Point.to_json_for_gmap(Point.all).html_safe %>
+    var points = <%= Point.to_json_for_gmap(@points).html_safe %>
     var marker;
-    var center_pos = <%= Point.get_gravity_center(Point.all).html_safe %>
+    var center_pos = <%= Point.get_gravity_center(@points).html_safe %>
     
     map = new google.maps.Map(target, {
       center: center_pos,

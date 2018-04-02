@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     
     if signin(email, password)
       flash[:success] = 'サインインしました'
-      redirect_to dummy_path
+      redirect_to my_collections_url
     else
       flash[:danger] = 'サインインできませんでした。'
       redirect_to root_url
