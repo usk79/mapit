@@ -42,16 +42,17 @@
 			<div class="st-content-inner">
 				<!-- Top Navigation -->
         			
+				<div class="main">
+	          		<div id="st-trigger-effects"><button data-effect="st-effect-2" class="open-menu glyphicon glyphicon-option-vertical"></button></div>	
+					<%= render 'layouts/flash_messages' %>
 					
-					<div class="main">
-	          <div id="st-trigger-effects"><button data-effect="st-effect-2" class="open-menu glyphicon glyphicon-option-vertical"></button></div>	
-						<%= render 'layouts/flash_messages' %>
-						<%= render 'layouts/gmap' %>
-						
-						
-					</div><!-- /main -->
+					<%= render 'layouts/gmap' %>
 					
-					<%= render 'layouts/footer' %>
+					<%= render 'toppages/point_list' %>
+						
+				</div><!-- /main -->
+				
+				<%= render 'layouts/footer' %>
 				
 			</div><!-- /st-content-inner -->
 		</div><!-- /st-content -->
