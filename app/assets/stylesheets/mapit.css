@@ -119,7 +119,16 @@ h3 {
 }
 
 .leftbox > span {
+    display: inline-block;
+    width: 100%;
     font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis; /* Opera9,10対応 */
+}
+.leftbox > span > img {
+     margin-right: 5px;   
 }
 
 .leftbox > p,
