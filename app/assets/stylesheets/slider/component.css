@@ -123,6 +123,10 @@ body,
 	float: left;
 }
 
+.st-menu a {
+	color: #444;
+}
+
 .st-menu ul li a {
 	display: block;
 	padding: 0.5em 1em 0.5em 1.2em;

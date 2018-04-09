@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   
   root to: 'toppages#index'
   
-  get 'my_collections', to: 'toppages#my_collections'
-  
   get 'signup', to: 'users#new'
   resources :users, only: [:show, :create]
   
@@ -11,6 +9,15 @@ Rails.application.routes.draw do
   post 'signin', to: 'sessions#create'
   delete 'signout', to: 'sessions#destroy'
   
-  resources :points, only: [:new, :create, :show, :edit, :update, :destroy]
+#  resources :points, only: [:update]
+  
+  get 'points/new/:collection', to: 'points#new'
+  post 'points/:collection', to: 'points#create'
+  get 'points/show/:collection/:id', to: 'points#show'
+  get 'points/:collection/:id/edit', to: 'points#edit'
+  patch 'points/:collection/:id', to: 'points#update'
+  delete 'points/:collection/:id/', to: 'points#destroy'
+  
+  resources :collections
   
 end

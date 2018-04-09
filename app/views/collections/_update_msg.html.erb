@@ -1,5 +1,5 @@
-<!-- Delete Point Dialog -->
-<div class="modal fade" id="delete_dialog" tabindex="-1">
+<!-- Update Point Dialog -->
+<div class="modal fade" id="update_dialog" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       
@@ -13,14 +13,13 @@
       
       <!-- Body -->
       <div class="modal-body">
-        このポイントを削除してもよろしいですか？
+         コレクション情報を更新してもよろしいですか？
       </div>
       
       <!-- Footer-->
       <div class="modal-footer">
-        
-        <%= link_to 'Yes', {:controller => 'points', :action => 'destroy', :collection => @collection.id, :id => @point.id}, method: :delete, class: 'btn btn-danger' %>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+        <%= f.submit 'Yes', class: 'btn btn-primary' %>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
       </div>
     </div>
   </div>

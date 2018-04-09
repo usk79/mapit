@@ -4,17 +4,27 @@
 	<nav class="st-menu st-effect-2" id="menu-2">
 	  <div class="clearfix">
 		  <h2>Myコレクション</h2>
-		  <span class="glyphicon glyphicon-plus-sign plus-icon" title="コレクションを作成しましょう！"></span>
+		  <%= link_to new_collection_path do %>
+		  	<span class="glyphicon glyphicon-plus-sign plus-icon" title="コレクションを作成しましょう！"></span>
+		  <% end %>
 		</div>
+		
 		<ul>
-			<li><a href="#">絶景ポイント</a></li>
-			<li><a href="#">釣りポイント</a></li>
-			<li><a href="#">思い出の場所</a></li>
+			<% if @collections.size == 0 %>
+				<li><%= link_to 'コレクションを作ろう!', new_collection_path %></li>
+			<% else %>
+			
+				<% @collections.each do |c| %>
+					<li><%= link_to c.name, c %></li>
+				<% end %>
+			<% end %>
 		</ul>
 		
 		<div class="clearfix">
 		  <h2>フォロー</h2>
-		  <span class="glyphicon glyphicon-search plus-icon" title="お気に入りのパブリックコレクションを見つけてフォローしよう！"></span>
+		  <%= link_to collections_path do %>
+		  	<span class="glyphicon glyphicon-search plus-icon" title="お気に入りのパブリックコレクションを見つけてフォローしよう！"></span>
+		  <% end %>
 		</div>
 		<ul>
 			<li><a href="#">自動販売機</a></li>
@@ -40,9 +50,9 @@
 				<!-- Top Navigation -->
         			
 				<div class="main">
-	          		<div id="st-trigger-effects"><button data-effect="st-effect-2" class="open-menu glyphicon glyphicon-option-vertical"></button></div>	
+	        <div id="st-trigger-effects"><button data-effect="st-effect-2" class="open-menu glyphicon glyphicon-option-vertical"></button></div>	
 					<%= render 'layouts/flash_messages' %>
-					
+          
 					<%= render 'layouts/gmap' %>
 					
 					<%= render 'toppages/point_list' %>

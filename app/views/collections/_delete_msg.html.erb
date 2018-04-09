@@ -13,13 +13,12 @@
       
       <!-- Body -->
       <div class="modal-body">
-        このポイントを削除してもよろしいですか？
+        このコレクションをを削除してもよろしいですか？
       </div>
       
       <!-- Footer-->
       <div class="modal-footer">
-        
-        <%= link_to 'Yes', {:controller => 'points', :action => 'destroy', :collection => @collection.id, :id => @point.id}, method: :delete, class: 'btn btn-danger' %>
+        <%= link_to 'Yes', @point, method: :delete, class: 'btn btn-danger' %>
         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
       </div>
     </div>

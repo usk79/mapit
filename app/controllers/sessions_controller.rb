@@ -8,7 +8,17 @@ class SessionsController < ApplicationController
     
     if signin(email, password)
       flash[:success] = 'サインインしました'
-      redirect_to my_collections_url
+      
+      # sign in したらコレクションを表示
+      @collections = current_user.collections
+      
+      if @collections.size != 0
+        @collection = @collections.order(:updated_at).last
+        redirect_to controller: 'collections', action: 'show', id: @collection.id
+      else
+        
+        redirect_to controller: 'collections', action: 'index'
+      end
     else
       flash[:danger] = 'サインインできませんでした。'
       redirect_to root_url
