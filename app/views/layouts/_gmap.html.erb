@@ -1,4 +1,9 @@
-<h1 class="collection_name"><%= @collection.name %></h1>
+<h1 class="collection_name">
+  <%= @collection.name %>
+  <% if !@no_collection %>
+    <%= link_to '', "collection_info/#{@collection.id}", class: "edit_collection_link glyphicon glyphicon glyphicon-info-sign" %>
+  <% end %>
+</h1>
 <div class="gmap_container">
   <div id="map" style="width: 100%; height: 400px;"></div>
 </div>
@@ -27,7 +32,7 @@
       streetViewControl: false
     });
     
-<% if @collections.size != 0 %>
+<% if !@no_collection %>
     // 登録されている全ポイントのマーカーを作成
     if (points != null) {
       points.forEach(function(val){

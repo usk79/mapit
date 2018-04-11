@@ -86,7 +86,7 @@ h3 {
 }
 
 .point_tbllabel {
-    width: 100px;
+    width: 120px;
     font-weight: 700;
 }
 
@@ -163,6 +163,11 @@ h3 {
     padding: 0;
 }
 
+/* コレクション関連 */
+.edit_collection_link:hover {
+    color: #a9c4eb;
+    text-decoration: none;
+}
 
 
 /* カバー画像関連 */

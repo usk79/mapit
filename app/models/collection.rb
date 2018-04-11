@@ -8,5 +8,5 @@ class Collection < ApplicationRecord
             less_than_or_equal_to: 1
           }
   
-  has_many :points
+  has_many :points, dependent: :destroy
 end

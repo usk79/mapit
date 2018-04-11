@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       
       if @collections.size != 0
         @collection = @collections.order(:updated_at).last
-        redirect_to controller: 'collections', action: 'show', id: @collection.id
+        redirect_to controller: 'collections', action: 'index', id: @collection.id
       else
         
         redirect_to controller: 'collections', action: 'index'

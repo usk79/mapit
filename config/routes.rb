@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   post 'signin', to: 'sessions#create'
   delete 'signout', to: 'sessions#destroy'
   
-#  resources :points, only: [:update]
-  
   get 'points/new/:collection', to: 'points#new'
   post 'points/:collection', to: 'points#create'
   get 'points/show/:collection/:id', to: 'points#show'
@@ -19,5 +17,6 @@ Rails.application.routes.draw do
   delete 'points/:collection/:id/', to: 'points#destroy'
   
   resources :collections
+  get 'collection_info/:id', to: 'collections#info'
   
 end

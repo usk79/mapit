@@ -13,9 +13,10 @@
 			<% if @collections.size == 0 %>
 				<li><%= link_to 'コレクションを作ろう!', new_collection_path %></li>
 			<% else %>
-			
-				<% @collections.each do |c| %>
-					<li><%= link_to c.name, c %></li>
+					<% @collections.each do |c| %>
+					<li>
+						<%= link_to c.name, c %>
+					</li>
 				<% end %>
 			<% end %>
 		</ul>

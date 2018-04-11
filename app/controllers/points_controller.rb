@@ -54,15 +54,17 @@ class PointsController < ApplicationController
     
     if prms[:lat] == nil || prms[:lng] == nil
       flash.now[:danger] = '座標情報がありません。'
-      render :new
-    end
-    
-    if @point.update(prms)
-      flash[:success] = 'ポイント情報を更新しました!'
-      redirect_to root_url
-    else
-      flash.now[:danger] = 'ポイント情報の更新に失敗しました。'
       render :edit
+    else
+    
+      if @point.update(prms)
+        flash[:success] = 'ポイント情報を更新しました!'
+        redirect_to root_url
+      else
+        flash.now[:danger] = 'ポイント情報の更新に失敗しました。'
+        render :edit
+      end
+      
     end
   end
   
