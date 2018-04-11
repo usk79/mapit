@@ -30,6 +30,10 @@ class PointsController < ApplicationController
       render :new
     else
       if @point.save
+        
+        @collection.touch #タイムスタンプを更新
+        @collection.save  
+        
         flash[:success] = 'ポイントをコレクションしました!'
         redirect_to root_url
       else
@@ -58,6 +62,9 @@ class PointsController < ApplicationController
     else
     
       if @point.update(prms)
+        @collection.touch #タイムスタンプを更新
+        @collection.save
+        
         flash[:success] = 'ポイント情報を更新しました!'
         redirect_to root_url
       else
@@ -70,6 +77,9 @@ class PointsController < ApplicationController
   
   def destroy
     @point.destroy
+    
+    @collection.touch #タイムスタンプを更新
+    @collection.save
     
     flash[:success] = 'ポイントを削除しました。'
     redirect_to root_url
