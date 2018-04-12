@@ -23,23 +23,14 @@
 		
 		<div class="clearfix">
 		  <h2>フォロー</h2>
-		  <%= link_to collections_path do %>
+		  <%= link_to '/show_public' do %>
 		  	<span class="glyphicon glyphicon-search plus-icon" title="お気に入りのパブリックコレクションを見つけてフォローしよう！"></span>
 		  <% end %>
 		</div>
 		<ul>
-			<li><a href="#">自動販売機</a></li>
-			<li><a href="#">AED</a></li>
-			<li><a href="#">公衆電話</a></li>
-			<li><a href="#">自動販売機</a></li>
-			<li><a href="#">AED</a></li>
-			<li><a href="#">公衆電話</a></li>
-			<li><a href="#">自動販売機</a></li>
-			<li><a href="#">AED</a></li>
-			<li><a href="#">公衆電話</a></li>
-			<li><a href="#">自動販売機</a></li>
-			<li><a href="#">AED</a></li>
-			<li><a href="#">公衆電話</a></li>
+			<% @follow_collections.each do |item| %>
+				<li><%= link_to item.name, item %></li>
+			<% end %>
 		</ul>
 	</nav>
 	

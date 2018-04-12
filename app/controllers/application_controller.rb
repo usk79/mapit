@@ -3,6 +3,15 @@ class ApplicationController < ActionController::Base
   
   include SessionsHelper
   
+  def public_user
+    User.find(1)
+  end
+  
+  def find_from_public_collection(id)
+    public_user.collections.find_by(id: id)
+  end
+
+  
   private
   
   def require_user_logged_in

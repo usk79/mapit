@@ -4,14 +4,13 @@ class PointsController < ApplicationController
   
   #TODO: pointの作成・編集・削除操作はコレクションをフォローしているユーザのみに限定する
   #TODO: 現在のzoom値を読み取って、使用するhttp://www.openspc2.org/reibun/Google/Maps/API/ver3/code/map/center/0101/index.html
-  
+  before_action :require_user_logged_in
+  before_action :set_collection
   before_action :set_point, only: [:show, :edit, :update, :destroy]
+  
   
   def new
     #TODO:　緯度経度情報が正しいかチェック　ダメならflash
-    
-    @collection = current_user.collections.find_by(id: params[:collection])
-    
     @point = Point.new(lat: params[:addPointLat], lng: params[:addPointLng])
     @points = Point.all
   end
@@ -19,7 +18,6 @@ class PointsController < ApplicationController
   def create
     prms = point_params
     
-    @collection = current_user.collections.find_by(id: prms[:collection_id])
     @point = @collection.points.build(prms)
     
     if prms[:lat] == nil || prms[:lng] == nil
@@ -35,7 +33,7 @@ class PointsController < ApplicationController
         @collection.save  
         
         flash[:success] = 'ポイントをコレクションしました!'
-        redirect_to root_url
+        redirect_to controller: 'collections', action: 'show', id: @collection
       else
         flash.now[:danger] = 'ポイントの追加に失敗しました。'
         render :new
@@ -66,7 +64,7 @@ class PointsController < ApplicationController
         @collection.save
         
         flash[:success] = 'ポイント情報を更新しました!'
-        redirect_to root_url
+        redirect_to controller: 'collections', action: 'show', id: @collection
       else
         flash.now[:danger] = 'ポイント情報の更新に失敗しました。'
         render :edit
@@ -82,15 +80,19 @@ class PointsController < ApplicationController
     @collection.save
     
     flash[:success] = 'ポイントを削除しました。'
-    redirect_to root_url
+    redirect_to controller: 'collections', action: 'show', id: @collection
   end
   
   private
   
   def set_point
-    @collection = current_user.collections.find_by(id: params[:collection])
     @point = @collection.points.find_by(id: params[:id])
     redirect_to root_url if @point == nil
+  end
+  
+  def set_collection
+    @collection = current_user.collections.find_by(id: params[:collection]) 
+    @collection ||= find_from_public_collection(params[:collection])
   end
   
   def point_params

@@ -18,5 +18,8 @@ Rails.application.routes.draw do
   
   resources :collections
   get 'collection_info/:id', to: 'collections#info'
+  get 'show_public', to: 'collections#show_public'
+  
+  resources :collection_relationships, only: [:create, :destroy]
   
 end

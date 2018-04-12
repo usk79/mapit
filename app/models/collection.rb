@@ -9,4 +9,7 @@ class Collection < ApplicationRecord
           }
   
   has_many :points, dependent: :destroy
+  has_many :collection_relationships, dependent: :destroy
+  has_many :followers, through: :collection_relationships, source: :user
+
 end

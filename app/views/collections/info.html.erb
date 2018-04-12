@@ -1,4 +1,5 @@
-
+<%= render 'layouts/flash_messages' %>
+<h1 class="collection_name"><%= @collection.name %></h1>
 
 <div class="formcontainer">
   <div class="container">
@@ -12,12 +13,29 @@
               <td class="text-left"><%= @collection.name %></td>
             </tr>
             <tr>
+              <td class="point_tbllabel">タイプ</td>
+              <% if @collection.collection_type == 0 %>
+                <td class="text-left">Public</td>
+              <% else %>
+                <td class="text-left">Private</td>
+              <% end %>
+            </tr>
+            <tr>
               <td class="point_tbllabel">作成日</td>
-              <td class="text-left"><%= @collection.created_at %></td>
+              <td class="text-left"><%= @collection.created_at.strftime("%Y-%m-%d") %></td>
             </tr>
             <tr>
               <td class="point_tbllabel">登録ポイント数</td>
               <td class="text-left"><%= @collection.points.size %></td>
+            </tr>
+            <% if @collection.collection_type == 0 %>
+              <tr>
+                <td class="point_tbllabel">フォロワー数</td>
+                <td class="text-left"><%= @collection.followers.size %></td>
+              </tr>
+            <% end %>
+            <tr>
+              
             </tr>
           </table>
           <div class="point_container">
@@ -37,12 +55,39 @@
     
     <div class="point_btns_container">
       <div class="row">
-        <div class="col-xs-2 col-xs-offset-7">
-          <%= link_to '編集', edit_collection_path(@collection), class: 'btn btn-primary btn-block'%>
-        </div>
-        <div class="col-xs-2">
-          <%= link_to '戻る', root_url, class: 'btn btn-default btn-block'%>
-        </div>
+   
+        <% if current_user.is_creator?(@collection) %>
+          <div class="col-xs-1 col-xs-offset-9">
+            <%= link_to '編集', edit_collection_path(@collection), class: 'btn btn-primary btn-block'%>
+          </div>
+          <div class="col-xs-1">
+            <%= link_to '戻る', root_url, class: 'btn btn-default btn-block'%>
+          </div>
+        <% else %>
+        
+          <% if current_user.following?(@collection) %>
+          
+            <%= form_for(current_user.collection_relationships.find_by(collection_id: @collection.id), html: { method: :delete }) do |f| %>
+              <%= hidden_field_tag :collection_id, @collection.id %>
+              <%= f.submit 'アンフォロー', class: 'col-xs-1 col-xs-offset-8 btn btn-warning'%>
+            <% end %>
+            
+          <% else %>
+            
+            <%= form_for(current_user.collection_relationships.build) do |f| %>
+              <%= hidden_field_tag :collection_id, @collection.id %>
+              
+              <%= f.submit 'フォロー', class: 'col-xs-1 col-xs-offset-8 btn btn-success'%>
+            
+            <% end %>
+        
+          <% end %>
+            
+          <div class="col-xs-1">
+            <%= link_to '戻る', root_url, class: 'btn btn-default btn-block'%>
+          </div>
+          
+        <% end %>
       </div>
     </div>
   </div>

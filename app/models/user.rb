@@ -11,5 +11,25 @@ class User < ApplicationRecord
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
                     
-  has_many :collections
+  has_many :collections, dependent: :destroy
+  has_many :collection_relationships, dependent: :destroy
+  has_many :follow_collections, through: :collection_relationships, source: :collection
+  
+  def follow(collection)
+    self.collection_relationships.find_or_create_by(collection_id: collection.id)
+  end
+  
+  def unfollow(collection)
+    relationship = self.collection_relationships.find_by(collection_id: collection.id)
+    relationship.destroy if relationship
+  end
+  
+  def following?(collection)
+    self.follow_collections.include?(collection)
+  end
+  
+  def is_creator?(collection)
+    self.id == collection.created_by
+  end
+  
 end

@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180405131218) do
+ActiveRecord::Schema.define(version: 20180411135150) do
+
+  create_table "collection_relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "collection_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collection_id"], name: "index_collection_relationships_on_collection_id"
+    t.index ["user_id", "collection_id"], name: "index_collection_relationships_on_user_id_and_collection_id", unique: true
+    t.index ["user_id"], name: "index_collection_relationships_on_user_id"
+  end
 
   create_table "collections", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -44,6 +54,8 @@ ActiveRecord::Schema.define(version: 20180405131218) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "collection_relationships", "collections"
+  add_foreign_key "collection_relationships", "users"
   add_foreign_key "collections", "users"
   add_foreign_key "points", "collections"
 end

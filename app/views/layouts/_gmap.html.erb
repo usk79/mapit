@@ -1,7 +1,7 @@
 <h1 class="collection_name">
   <%= @collection.name %>
   <% if !@no_collection %>
-    <%= link_to '', "collection_info/#{@collection.id}", class: "edit_collection_link glyphicon glyphicon glyphicon-info-sign" %>
+    <%= link_to '', "/collection_info/#{@collection.id}", class: "edit_collection_link glyphicon glyphicon glyphicon-info-sign" %>
   <% end %>
 </h1>
 <div class="gmap_container">
