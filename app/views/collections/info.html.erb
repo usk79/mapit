@@ -14,7 +14,7 @@
             </tr>
             <tr>
               <td class="point_tbllabel">タイプ</td>
-              <% if @collection.collection_type == 0 %>
+              <% if @collection.is_public? %>
                 <td class="text-left">Public</td>
               <% else %>
                 <td class="text-left">Private</td>
@@ -24,11 +24,17 @@
               <td class="point_tbllabel">作成日</td>
               <td class="text-left"><%= @collection.created_at.strftime("%Y-%m-%d") %></td>
             </tr>
+            <% if @collection.is_public? %>
+              <tr>
+                <td class="point_tbllabel">作成者</td>
+                <td class="text-left"><%= @collection.creator.name %></td>
+              </tr>
+            <% end %>
             <tr>
               <td class="point_tbllabel">登録ポイント数</td>
               <td class="text-left"><%= @collection.points.size %></td>
             </tr>
-            <% if @collection.collection_type == 0 %>
+            <% if @collection.is_public? %>
               <tr>
                 <td class="point_tbllabel">フォロワー数</td>
                 <td class="text-left"><%= @collection.followers.size %></td>
@@ -57,10 +63,10 @@
       <div class="row">
    
         <% if current_user.is_creator?(@collection) %>
-          <div class="col-xs-1 col-xs-offset-9">
+          <div class="col-xs-3 col-xs-offset-5 col-md-2 col-md-offset-7">
             <%= link_to '編集', edit_collection_path(@collection), class: 'btn btn-primary btn-block'%>
           </div>
-          <div class="col-xs-1">
+          <div class="col-xs-3  col-md-2">
             <%= link_to '戻る', root_url, class: 'btn btn-default btn-block'%>
           </div>
         <% else %>
@@ -69,7 +75,7 @@
           
             <%= form_for(current_user.collection_relationships.find_by(collection_id: @collection.id), html: { method: :delete }) do |f| %>
               <%= hidden_field_tag :collection_id, @collection.id %>
-              <%= f.submit 'アンフォロー', class: 'col-xs-1 col-xs-offset-8 btn btn-warning'%>
+              <%= f.submit 'アンフォロー', class: 'col-xs-4 col-xs-offset-3 col-md-2 col-md-offset-7 btn btn-warning'%>
             <% end %>
             
           <% else %>
@@ -77,13 +83,13 @@
             <%= form_for(current_user.collection_relationships.build) do |f| %>
               <%= hidden_field_tag :collection_id, @collection.id %>
               
-              <%= f.submit 'フォロー', class: 'col-xs-1 col-xs-offset-8 btn btn-success'%>
+              <%= f.submit 'フォロー', class: 'col-xs-4 col-xs-offset-3 col-md-2  col-md-offset-7 btn btn-success'%>
             
             <% end %>
         
           <% end %>
             
-          <div class="col-xs-1">
+          <div class="col-xs-3 col-md-2">
             <%= link_to '戻る', root_url, class: 'btn btn-default btn-block'%>
           </div>
           

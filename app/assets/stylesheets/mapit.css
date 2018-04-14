@@ -169,6 +169,34 @@ h3 {
     text-decoration: none;
 }
 
+/* public コレクション一覧 */
+.tablecontainer {
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.collections_table {
+    table-layout: fixed;
+}
+
+.tablecontainer .icon
+{
+    display: inline-block;
+    width: 60px;
+    height:60px;
+}
+
+
+.tablecontainer .textoverflow
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: inline-block;
+}
 
 /* カバー画像関連 */
 .cover {

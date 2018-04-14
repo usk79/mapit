@@ -91,8 +91,8 @@ class PointsController < ApplicationController
   end
   
   def set_collection
-    @collection = current_user.collections.find_by(id: params[:collection]) 
-    @collection ||= find_from_public_collection(params[:collection])
+    @collection = current_user.collections.find_by(id: params[:collection]) # ログインユーザが所有している or
+    @collection ||= find_from_public_collection(params[:collection]) # ログインユーザがフォローしている
   end
   
   def point_params

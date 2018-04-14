@@ -19,6 +19,9 @@ class CollectionsController < ApplicationController
     if prms[:name] == nil || prms[:name] == ''
       flash.now[:danger] = 'コレクション名は必須です。'
       render :new
+    elsif prms[:name].size > 20
+      flash.now[:danger] = 'コレクション名は20文字までです。'
+      render :new
     elsif prms[:collection_type] < 0 || prms[:collection_type] > 1
       flash.now[:danger] = '正しくないデータが入力されました。'
       render :new
@@ -52,6 +55,9 @@ class CollectionsController < ApplicationController
       render :edit
     elsif prms[:collection_type] < 0 || prms[:collection_type] > 1
       flash.now[:danger] = '正しくないデータが入力されました。'
+      render :edit
+    elsif @collection.followers.size >=2 && prms[:collection_type] != @collection.collection_type
+      flash.now[:danger] = "#{current_user.name}さん以外にフォロワーが存在するためコレクションのタイプを変更できません。"
       render :edit
     else
       if @collection.update(prms)

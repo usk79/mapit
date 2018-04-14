@@ -4,29 +4,28 @@
   <div class="container">
     <div class="row">
       
-      <% @public_collections.each do |item| %>
-        <div class="col-xs-12 col-sm-6 col-sm-offset-0 col-md-4">
-          <div class="pointlist_box">
-            <div class="leftbox">
-              <span><%= image_tag '/images/pin_rd.png', size: '15x24'%><%= item.name %></span>
-              <div class="photobox">
-                写真
-              </div>
-            </div>
-            
-            <div class="rightbox">
-              <p>登録日：<%= item.created_at.strftime("%Y-%m-%d") %></p>
-              <p>ポイント数：<%= item.points.size %></p>
-              <p>フォロワー数：<%= item.followers.size %></p>
-              <pre class="description"><%= item.description %></pre>
-            </div>
-            
-            <%= link_to '詳細', :controller => 'collections', :action => 'info', :id => item.id %> 
-          </div>
-        </div>
-      <% end %>
-      
-
+      <div class="tablecontainer">
+        <table class="table table-striped collections_table">
+          <tr>
+            <th class="col-xs-2 col-md-1"></th>
+            <th class="col-xs-2 col-md-1">名前</th>
+            <th class="col-xs-4 col-md-5">説明</th>
+            <th class="col-xs-2 col-md-1"></th>
+            <th class="col-xs-2 col-md-1"></th>
+          </tr>
+          <% @public_collections.each do |item| %>
+          <tr>
+            <td><span class="icon">ICON</div></td>
+            <td><span><%= link_to item.name, :controller => 'collections', :action => 'info', :id => item.id %> </div></td>
+            <td><span class="textoverflow"><%= item.description %></span></td>
+            <td><span  class="badge"><%= item.points.size %>Points</span></td>
+            <td><span  class="badge"><%= item.followers.size %>Users</span></td>
+          </tr>
+          
+          <% end %>
+        </table>
+  
+      </div>
     </div>
   </div>
 <% end %>

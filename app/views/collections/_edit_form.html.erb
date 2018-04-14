@@ -14,10 +14,18 @@
             <%= f.label :description, '説明' %>
             <%= f.text_area :description, class: 'form-control', rows:8, placeholder: '場所の詳しい説明やメモなど' %>
           </div>
-          <div class="form-group">
-            <%= f.label :collection_type, 'コレクションのタイプ' %>
-            <%= f.select :collection_type, {Private: 1, Public: 0} %>
-          </div>
+          <% if @collection.followers.size >= 2 %>
+             <div class="form-group">
+              <%= f.label :collection_type, 'コレクションのタイプ' %>
+              <%= f.select :collection_type, {Private: 1, Public: 0}, {}, { :disabled => "disabled" }%>
+              <p>(※)コレクションのフォロワー数が2以上なのでタイプを変更できません。</p>
+            </div>
+          <% else %>
+            <div class="form-group">
+              <%= f.label :collection_type, 'コレクションのタイプ' %>
+              <%= f.select :collection_type, {Private: 1, Public: 0} %>
+            </div>
+          <% end %>
         </div>
         
         <!-- Photo Box -->

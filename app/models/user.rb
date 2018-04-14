@@ -4,7 +4,7 @@ class User < ApplicationRecord
   before_save { self.email.downcase! }
   
   #TODO: ユーザ名をアルファベットと少しの記号のみに制限する
-  validates :name, presence: true, length: { minimum: 4, maximum: 50 },
+  validates :name, presence: true, length: { minimum: 4, maximum: 40 },
                     uniqueness: { case_sensitive: false }
   
   validates :email, presence: true, length: { maximum: 255 },

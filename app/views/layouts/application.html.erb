@@ -28,19 +28,13 @@
       <%= yield %>
       
     <% else %>
-      <div class="adjustcontainer">
+     
         <%= render 'sessions/signin' %>
         
-        <%= yield :cover %>
-      
-        <div class="container">
-          
-          <%= render 'layouts/flash_messages' %>
-          <%= yield %>
-          
-        </div>
-        <%= render 'layouts/footer' %>
-      </div>
+        <%= render 'layouts/flash_messages' %>
+        <%= yield %>
+
+
     <% end %>
   </body>
   

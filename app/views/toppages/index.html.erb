@@ -1,10 +1,26 @@
-<% content_for :cover do %>
-  <div class="cover">
-    <div class="cover-inner">
-      <div class="cover-contents">
-        <h1>好きな場所をコレクションしよう</h1>
-        <%= link_to 'Map It ! に参加する', signup_path, class: 'btn btn-lg btn-primary' %>
-      </div>
-    </div>
-  </div>
-<% end %>
+<div id="st-container" class="st-container">
+  <div class="st-pusher">
+		
+		<div class="st-content">
+      <div class="st-content-inner">
+        
+        <div class="main">
+          <div class="cover">
+            <div class="cover-inner">
+              <div class="cover-contents">
+                <h1>好きな場所をコレクションしよう</h1>
+                <%= link_to 'Map It ! に参加する', signup_path, class: 'btn btn-lg btn-primary' %>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <%= render 'layouts/footer' %>
+			
+			</div><!-- /st-content-inner -->
+		</div><!-- /st-content -->
+    
+	</div><!-- /st-pusher -->
+
+</div><!-- /st-container -->
