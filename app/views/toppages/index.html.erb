@@ -14,6 +14,38 @@
             </div>
           </div>
           
+          <h1 class="collection_name">みんなのコレクション</h1>
+
+          <% if @public_collections %>
+            <div class="container">
+              <div class="row">
+                
+                <div class="tablecontainer">
+                  <table class="table table-striped collections_table">
+                    <tr>
+                      <th class="col-xs-2 col-md-1"></th>
+                      <th class="col-xs-2 col-md-1">名前</th>
+                      <th class="col-xs-4 col-md-5">説明</th>
+                      <th class="col-xs-2 col-md-1"></th>
+                      <th class="col-xs-2 col-md-1"></th>
+                    </tr>
+                    
+                    <% @public_collections.each do |item| %>
+                    <tr>
+                      <td><span class="icon">ICON</div></td>
+                      <td><span><%= link_to item.name, :controller => 'collections', :action => 'info', :id => item.id %> </div></td>
+                      <td><span class="textoverflow"><%= item.description %></span></td>
+                      <td><span  class="badge"><%= item.points.size %>Points</span></td>
+                      <td><span  class="badge"><%= item.followers.size %>Users</span></td>
+                    </tr>
+                    <% end %>
+                  </table>
+            
+                </div>
+              </div>
+            </div>
+          <% end %>
+          
         </div>
         
         <%= render 'layouts/footer' %>

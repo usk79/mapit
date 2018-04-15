@@ -13,6 +13,7 @@
             <th class="col-xs-2 col-md-1"></th>
             <th class="col-xs-2 col-md-1"></th>
           </tr>
+          
           <% @public_collections.each do |item| %>
           <tr>
             <td><span class="icon">ICON</div></td>
@@ -21,7 +22,6 @@
             <td><span  class="badge"><%= item.points.size %>Points</span></td>
             <td><span  class="badge"><%= item.followers.size %>Users</span></td>
           </tr>
-          
           <% end %>
         </table>
   

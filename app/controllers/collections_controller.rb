@@ -19,8 +19,8 @@ class CollectionsController < ApplicationController
     if prms[:name] == nil || prms[:name] == ''
       flash.now[:danger] = 'コレクション名は必須です。'
       render :new
-    elsif prms[:name].size > 20
-      flash.now[:danger] = 'コレクション名は20文字までです。'
+    elsif prms[:name].size > 40
+      flash.now[:danger] = 'コレクション名は40文字までです。'
       render :new
     elsif prms[:collection_type] < 0 || prms[:collection_type] > 1
       flash.now[:danger] = '正しくないデータが入力されました。'
