@@ -9,7 +9,11 @@
               <p>緯度：<%= item.lat %></p>
               <p>経度：<%= item.lng %></p>
               <div class="photobox">
-                写真
+                <% if item.image? %>
+                  <%= image_tag item.image.thumb.url %>
+                <% else %>
+                  <div class="noimage"><span class="glyphicon glyphicon-picture"></span></div>
+                <% end %>
               </div>
             </div>
             <div class="rightbox">

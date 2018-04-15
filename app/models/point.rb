@@ -2,6 +2,8 @@ class Point < ApplicationRecord
   
   belongs_to :collection
   
+  mount_uploader :image, ImageUploader
+  
   validates :name, length: {maximum: 255}
   validates :lat, numericality: true
   validates :lng, numericality: true

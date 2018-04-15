@@ -96,7 +96,7 @@ class PointsController < ApplicationController
   end
   
   def point_params
-    prms = params.require(:point).permit(:name, :lat, :lng, :description, :address, :collection_id)
+    prms = params.require(:point).permit(:name, :lat, :lng, :description, :address, :collection_id, :image)
     
     prms[:created_by] = current_user.id
     prms[:collection_id] = prms[:collection_id].to_i
