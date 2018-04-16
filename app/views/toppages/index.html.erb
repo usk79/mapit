@@ -32,7 +32,15 @@
                     
                     <% @public_collections.each do |item| %>
                     <tr>
-                      <td><span class="icon">ICON</div></td>
+                      <td>
+                        <div class="icon">
+                          <% if item.image? %>
+                            <%= image_tag item.image.thumb.url %>
+                          <% else %>
+                            <div class="noimage"><span class="glyphicon glyphicon-picture"></span></div>
+                        　<% end %>
+                      　</div>
+                      </td>
                       <td><span><%= link_to item.name, :controller => 'collections', :action => 'info', :id => item.id %> </div></td>
                       <td><span class="textoverflow"><%= item.description %></span></td>
                       <td><span  class="badge"><%= item.points.size %>Points</span></td>

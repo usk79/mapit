@@ -59,7 +59,14 @@ class CollectionsController < ApplicationController
     elsif @collection.followers.size >=2 && prms[:collection_type] != @collection.collection_type
       flash.now[:danger] = "#{current_user.name}さん以外にフォロワーが存在するためコレクションのタイプを変更できません。"
       render :edit
-    else
+    else # パラメータにエラーが無いとき
+      if prms[:collection_type] == 0 && @collection.collection_type == 1 # privateからpublicに変更するとき
+        prms[:user_id] = 1
+        current_user.follow(@collection)
+      end
+      
+      prms[:image] = @collection.image unless @collection.image.blank?
+      
       if @collection.update(prms)
         flash[:success] = 'コレクション情報を更新しました!'
         redirect_to controller: 'collections', action: 'show', id: @collection
@@ -113,7 +120,7 @@ class CollectionsController < ApplicationController
   private
   
   def collection_params
-    prms = params.require(:collection).permit(:name, :description, :collection_type)
+    prms = params.require(:collection).permit(:name, :description, :collection_type, :image)
     
     prms[:collection_type] = prms[:collection_type].to_i
     

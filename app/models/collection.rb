@@ -12,6 +12,8 @@ class Collection < ApplicationRecord
   has_many :collection_relationships, dependent: :destroy
   has_many :followers, through: :collection_relationships, source: :user
   
+  mount_uploader :image, ImageUploader
+  
   def is_private?
     self.collection_type == 1
   end

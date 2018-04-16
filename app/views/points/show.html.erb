@@ -13,7 +13,7 @@
           <% if @point.image? %>
             <%= image_tag @point.image.thumb.url %>
           <% else %>
-            <div class="noimage"><span class="glyphicon glyphicon-picture"></span></div>
+            <div class="noimage"><span class="glyphicon glyphicon-camera"></span></div>
         　<% end %>
         </div>
       </div>
@@ -108,7 +108,7 @@
         map: map,
         title: val.description,
         icon: {
-          url: '../images/pin_rd.png',
+          url: "<%= root_url %>" + '/images/pin_rd.png',
         	scaledSize: new google.maps.Size(20, 33)
         }
       });
@@ -127,7 +127,7 @@
         position: center_pos,
         map: map,
         icon: {
-          url: '../images/pin_bl.png',
+          url: "<%= root_url %>" + '/images/pin_bl.png',
         	scaledSize: new google.maps.Size(20, 33)
         },
     });

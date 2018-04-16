@@ -31,12 +31,21 @@
         <!-- Photo Box -->
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0">
           <div class="form-group">
-            <%= f.label :description, 'コレクションのイメージ画像' %>
-            <div class="photo-form-box">未実装</div>
+            <%= f.label :image, 'コレクションのイメージ' %>
+            <div class="photo-form-box">
+              <% if @collection.image? %>
+              <%= image_tag @collection.image.thumb.url %>
+            <% else %>
+              <div class="noimage"><span class="glyphicon glyphicon-picture"></span></div>
+            <% end %>
+            </div>
           </div>
-          <div class="col-xs-2 col-xs-offset-4">
-            <div class="btn btn-primary">写真を開く</div>
+          
+          <div class="form-group">
+            <%= f.file_field :image %>
+            <%= f.hidden_field :image_cache %>
           </div>
+          
         </div>
       </div>
       

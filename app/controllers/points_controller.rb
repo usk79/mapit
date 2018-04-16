@@ -58,7 +58,8 @@ class PointsController < ApplicationController
       flash.now[:danger] = '座標情報がありません。'
       render :edit
     else
-    
+      prms[:image] = @point.image unless @point.image.blank?
+       
       if @point.update(prms)
         @collection.touch #タイムスタンプを更新
         @collection.save
