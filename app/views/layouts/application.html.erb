@@ -24,7 +24,7 @@
     
     <% if logged_in? %>
       <%= render 'sessions/signout' %>
-      
+      <%= render 'layouts/flash_messages' %>
       <%= yield %>
       
     <% else %>

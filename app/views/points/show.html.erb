@@ -68,7 +68,53 @@
 
 <!-- comments -->
 <div class="formcontainer">
-    コメント一覧
+  <div class="comment_container">
+
+    <div class="comment_box">
+      
+      <% if @comments.size == 0 %>
+        <p>コメントはありません。</p>
+      <% else %>
+        <% @comments.each do |item| %>
+
+          <div class="comment_line">
+            <div class="user_img">
+              <div class="nouser_image">
+                <span class="glyphicon glyphicon-user"></span>
+              </div>
+            </div>
+            <div class="comment_content">
+              <p>
+                <%= item.created_at.strftime(("%Y-%m-%d %H:%M")) %>
+                <%= item.user.name %>
+                <% if item.user_id == current_user.id %>
+                  <%= link_to '削除', {:controller => 'comments', :action => 'destroy', :id => item.id }, method: :delete, class: 'btn btn-danger btn-xs' %>
+                <% end %>
+              </p>
+              <p><%= item.content %></p>  
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    
+    <div class="comment_post_box">
+      <%= form_for(@comment) do |f| %>
+        <%= render 'comments/save_msg', f: f %>
+          
+        <div class="form-group">
+          <%= f.label :content, 'コメント'%>
+          <%= f.text_area :content, class: "form-control", rows: 2, placeholder: 'コメントを投稿しよう！' %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :point_id, value: @point.id %>
+        </div>
+        <div class="comment_post_btn">
+            <button type="button" class="btn btn-primary col-xs-offset-10" data-toggle="modal" data-target="#save_dialog">投稿</button>
+        </div>
+      <% end %>
+    </div>
+    
+  </div>
 </div>
 
 <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAIJfGcO2u5nHVWO-b7O4pAfPrta3U3EHc&callback=initMap" async defer></script>

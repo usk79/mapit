@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :collection_relationships, dependent: :destroy
   has_many :follow_collections, through: :collection_relationships, source: :collection
   
+  has_many :comments, dependent: :destroy
+  
   def follow(collection)
     self.collection_relationships.find_or_create_by(collection_id: collection.id)
   end

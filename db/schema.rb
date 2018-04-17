@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416120712) do
+ActiveRecord::Schema.define(version: 20180416131950) do
 
   create_table "collection_relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 20180416120712) do
     t.integer "created_by"
     t.string "image"
     t.index ["user_id"], name: "index_collections_on_user_id"
+  end
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "content"
+    t.bigint "point_id"
+    t.bigint "user_id"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["point_id"], name: "index_comments_on_point_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "points", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -59,5 +70,7 @@ ActiveRecord::Schema.define(version: 20180416120712) do
   add_foreign_key "collection_relationships", "collections"
   add_foreign_key "collection_relationships", "users"
   add_foreign_key "collections", "users"
+  add_foreign_key "comments", "points"
+  add_foreign_key "comments", "users"
   add_foreign_key "points", "collections"
 end

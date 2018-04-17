@@ -87,6 +87,7 @@ h3 {
     justify-content: center;
 }
 
+
 .point_infomation {
     padding-top: 10px;
 }
@@ -182,7 +183,7 @@ h3 {
 .rightbox > .description {
     border: 1px solid #ccc;
     overflow-y: auto;
-    height: 100px;
+    height: 80px;
     width: 100%;
     background-color: #fff;
     padding: 0;
@@ -231,6 +232,54 @@ h3 {
     width: 100%;
     display: inline-block;
 }
+
+/* ポイントのコメント関連 */
+.comment_container {
+    width: 95%;
+    height: 325px;
+    margin-left: auto;   
+    margin-right: auto;
+}
+
+.comment_box {
+    width: 100%;
+    height: 180px;
+    padding: 20px;
+    overflow-y: auto; 
+}
+
+.comment_post_btn {
+    margin-top: 10px;
+}
+
+.comment_box .comment_line {
+    width: 100%;
+    margin-bottom: 20px;
+}
+.comment_box .user_img {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+    float: left;
+}
+
+.nouser_image {
+    background-color: #ddd;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    font-size: 3em;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.comment_box .comment_content {
+    padding-left: 10px;
+}
+
 
 /* カバー画像関連 */
 .cover {

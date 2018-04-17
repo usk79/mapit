@@ -69,7 +69,7 @@ class CollectionsController < ApplicationController
       
       if @collection.update(prms)
         flash[:success] = 'コレクション情報を更新しました!'
-        redirect_to controller: 'collections', action: 'show', id: @collection
+        redirect_to controller: 'collections', action: 'info', id: @collection
       else
         flash.now[:danger] = 'コレクション情報の更新に失敗しました。'
         render :edit

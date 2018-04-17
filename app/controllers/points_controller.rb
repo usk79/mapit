@@ -44,6 +44,9 @@ class PointsController < ApplicationController
   
   def show
     @points = @collection.points.where.not(id: @point.id)
+    
+    @comments = @point.comments
+    @comment = Comment.new
   end
   
   def edit

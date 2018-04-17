@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   
   resources :collection_relationships, only: [:create, :destroy]
   
+  resources :comments, only: [:create, :destroy]
+  
 end
