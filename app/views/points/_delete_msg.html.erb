@@ -13,7 +13,11 @@
       
       <!-- Body -->
       <div class="modal-body">
-        このポイントを削除してもよろしいですか？
+        <% if current_user.id != @point.created_by %>
+          <p>このポイントは、他のユーザが登録したデータです。</p>
+          <p>十分確認の上削除してください。</p>
+        <% end %>
+        このポイントを削除してもよろしいですか
       </div>
       
       <!-- Footer-->

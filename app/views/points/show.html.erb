@@ -31,7 +31,12 @@
             </tr>
             <tr>
               <td class="point_tbllabel">登録ユーザ</td>
-              <td class="text-left">未実装</td>
+              <td class="text-left">
+                <img class="media-object img-rounded img-responsive" src="
+                  <%= gravatar_url(User.find(@point.created_by), { size: 50 }) %>
+                  " alt="">
+                <%= User.find_by(id: @point.created_by).name %>
+              </td>
             </tr>
             <tr>
               <td class="point_tbllabel">緯度</td>
@@ -79,9 +84,14 @@
 
           <div class="comment_line">
             <div class="user_img">
+              <!--
               <div class="nouser_image">
                 <span class="glyphicon glyphicon-user"></span>
               </div>
+              -->
+              <img class="media-object img-rounded img-responsive" src="
+                <%= gravatar_url(User.find_by(id: item.user_id), { size: 100 }) %>
+              " alt="">
             </div>
             <div class="comment_content">
               <p>

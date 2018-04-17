@@ -27,7 +27,12 @@
             <% if @collection.is_public? %>
               <tr>
                 <td class="point_tbllabel">作成者</td>
-                <td class="text-left"><%= @collection.creator.name %></td>
+                <td class="text-left">
+                <img class="media-object img-rounded img-responsive" src="
+                <%= gravatar_url(User.find(@collection.creator.id), { size: 50 }) %>
+              " alt="">
+              <%= @collection.creator.name %>
+                </td>
               </tr>
             <% end %>
             <tr>

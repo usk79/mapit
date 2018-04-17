@@ -12,7 +12,7 @@ class PointsController < ApplicationController
   def new
     #TODO:　緯度経度情報が正しいかチェック　ダメならflash
     @point = Point.new(lat: params[:addPointLat], lng: params[:addPointLng])
-    @points = Point.all
+    @points = @collection.points.where.not(id: @point.id)
   end
 
   def create
