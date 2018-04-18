@@ -1,0 +1,39 @@
+<h1 class="collection_name">みんなのコレクション</h1>
+
+<% if @public_collections %>
+  <div class="container">
+    <div class="row">
+      
+      <div class="tablecontainer">
+        <table class="table table-striped collections_table">
+          <tr>
+            <th class="col-xs-2 col-md-1"></th>
+            <th class="col-xs-2 col-md-1">名前</th>
+            <th class="col-xs-4 col-md-5">説明</th>
+            <th class="col-xs-2 col-md-1"></th>
+            <th class="col-xs-2 col-md-1"></th>
+          </tr>
+          
+          <% @public_collections.each do |item| %>
+          <tr>
+            <td>
+              <div class="icon">
+                <% if item.image? %>
+                  <%= image_tag item.image.thumb.url %>
+                <% else %>
+                  <div class="noimage"><span class="glyphicon glyphicon-picture"></span></div>
+              　<% end %>
+            　</div>
+            </td>
+            <td><span class="textoverflow" title="<%= item.name %>"><%= link_to item.name, :controller => 'toppages', :action => 'show', :id => item.id %> </div></td>
+            <td><span><%= item.description %></span></td>
+            <td><span class="badge"><%= item.points.size %>Points</span></td>
+            <td><span class="badge"><%= item.followers.size %>Users</span></td>
+          </tr>
+          <% end %>
+        </table>
+  
+      </div>
+    </div>
+  </div>
+<% end %>

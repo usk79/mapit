@@ -1,0 +1,49 @@
+<h1 class="collection_name">
+  <%= @collection.name %>
+</h1>
+<div class="gmap_container">
+  <div id="map" style="width: 90%; height: 400px; margin-left: auto; margin-right: auto;"></div>
+</div>
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAIJfGcO2u5nHVWO-b7O4pAfPrta3U3EHc&callback=initMap" async defer></script>
+<script>
+  
+  function initMap(){
+    'use strict';
+    
+    var target = document.getElementById('map');
+    var map;
+    var points = <%= Point.to_json_for_gmap(@points).html_safe %>;
+    var marker;
+    var center_pos = <%= Point.get_gravity_center(@points).html_safe %>;
+    
+    if (center_pos.lat == null || center_pos.lng == null) {  
+      center_pos = {lat: 35.681431, lng: 139.7668504} // 東京駅
+    }
+    
+    map = new google.maps.Map(target, {
+      center: center_pos,
+      zoom: 7,
+      clickableIcons: false,
+      fullscreenControl: false,
+      streetViewControl: false
+    });
+    
+    // 登録されている全ポイントのマーカーを作成
+    if (points != null) {
+      points.forEach(function(val){
+        var marker = new google.maps.Marker({
+          position: val.pos,
+          map: map,
+          title: val.description,
+          icon: {
+            url: "<%= root_url %>" + '/images/pin_rd.png',
+          	scaledSize: new google.maps.Size(20, 33)
+          }
+        });
+      });
+
+    }
+  }
+  
+</script>

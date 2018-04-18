@@ -5,19 +5,13 @@
       <div class="st-content-inner">
         
         <div class="main">
-          <div class="cover">
-            <div class="cover-inner">
-              <div class="cover-contents">
-                <h1>好きな場所をコレクションしよう</h1>
-                <%= link_to 'Map It ! に参加する', signup_path, class: 'btn btn-lg btn-primary' %>
-              </div>
-            </div>
+          <div class="row">
+            <%= link_to 'Map It ! に参加する', signup_path, class: 'btn btn-lg btn-primary btn-sm col-xs-offset-9' %>
           </div>
-          
+          <%= render 'toppages/gmap' %>
           <%= render 'toppages/collection_list' %>
-          
         </div>
-        
+      
         <%= render 'layouts/footer' %>
 			
 			</div><!-- /st-content-inner -->
