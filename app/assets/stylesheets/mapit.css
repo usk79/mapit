@@ -175,7 +175,7 @@ h3 {
 }
 
 .rightbox {
-    padding:; 10px;
+    padding: 10px;
 }
 
 
@@ -542,7 +542,6 @@ h3 {
 .dropdown-menu {
     background-color: #65baad;
     border: 1px solid #3e6962;
-    border: 1px solid #3e6962(0, 0, 0, .15);
     -webkit-box-shadow: 0 6px 12px rgba(94, 136, 129, 0.35);
     box-shadow: 0 6px 12px rgba(94, 136, 129, 0.35);
 }
