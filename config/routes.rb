@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   root to: 'toppages#index'
+  get 'toppage', to: 'toppages#index'
   get 'everyones/:id', to: 'toppages#show'
   
   get 'signup', to: 'users#new'
