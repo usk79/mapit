@@ -183,7 +183,7 @@ h3 {
 .rightbox > .description {
     border: 1px solid #ccc;
     overflow-y: auto;
-    height: 80px;
+    height: 50px;
     width: 100%;
     background-color: #fff;
     padding: 0;

@@ -6,8 +6,8 @@
           <div class="pointlist_box">
             <div class="leftbox">
               <span><%= image_tag '/images/pin_rd.png', size: '15x24'%><%= item.name %></span>
-              <p>緯度：<%= item.lat %></p>
-              <p>経度：<%= item.lng %></p>
+              <p>緯度：<%= sprintf("%.3f", item.lat) %></p>
+              <p>経度：<%= sprintf("%.3f", item.lng)  %></p>
               <div class="photobox">
                 <% if item.image? %>
                   <%= image_tag item.image.thumb.url %>
