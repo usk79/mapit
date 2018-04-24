@@ -1,0 +1,91 @@
+<!-- Delete Point Dialog -->
+<div class="modal fade" id="about_dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <!-- Header -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          <h4 class="modal-title" id="modal-label">Map It!について</h4>
+      </div>
+      
+      <!-- Body -->
+      <div class="modal-body">
+        <div class="about_box">
+          <h2 class="collection_name">Map It! へようこそ</h2>
+          <p>
+            Map It!は、あなたの好きな場所をお気に入りに登録するアプリです。
+            好きなWebサイトをお気に入りに登録するように、
+            地球上の好きな場所をMap It!でコレクションしましょう！
+          </p>
+          
+          <p>
+            （※）リリースしたばかりで
+            まだ使いづらい部分はたくさんあると思いますが、
+            順次改善していきます！
+          </p>
+          <h2>Map It! でできること</h2>
+          <p>
+            Map It! でできることは主に3つあります。
+          </p>
+          <ol>
+            <li>コレクションの作成</li>
+            <li>コレクションにポイントを追加する</li>
+            <li>コレクションを共有する</li>
+          </ol>
+          <h3>1. コレクションの作成</h3>
+          <p>
+            コレクションは、地図上の場所（ポイントと呼びます）を登録する際の分類です。
+            例えば、好きな場所、思い出の場所、行ってみたい場所など。
+            あなたの趣味でよく訪れる場所などを登録しても楽しいかもしれませんね！
+          </p>
+          <h3>2. コレクションにポイントを登録する</h3>
+          <p>
+            コレクションを作成したら、コレクションにポイントを追加しましょう。
+            （ポイントとは、地図上の場所のことを指します。）
+            ポイントには、ポイント名、そのポイントの説明、写真を一緒に登録できます。
+            また、コメントを追加することもできます。
+          </p>
+          <h3>3. コレクションを共有する</h3>
+          <p>
+            作成したコレクションは、他のユーザと共有することができます。
+            共有する方法には2種類あります。
+          </p>
+          <ol>
+            <li>友人・家族などグループで共有する方法</li>
+            <li>コレクションをすべてのユーザに公開する方法</li>
+          </ol>
+          <h4>1. グループで共有する方法</h4>
+          <p>こちらの機能は現在準備中です。</p>
+          
+          <h4>2. のコレクションをすべてのユーザに公開する</h4>
+          <p>
+            コレクションには、PrivateとPublicの二つの種類があります。
+            コレクションを作成・編集するときにPublicを選択すると、
+            そのコレクションは、すべてのユーザに公開されます。
+            ユーザは公開されているコレクションをフォローすることができ、
+            コレクションのフォロワーは自由にコレクションにポイントを追加することができます。
+          </p>
+          <p>
+            例えば、AEDや自動販売機などのコレクションを作成して、
+            フォロワーのみんなでポイントを追加すれば、
+            きっと生活に役立つ情報源なると思います！
+          </p>
+          
+          <h2>Map It!の操作方法</h2>
+          <p>
+            Map It!の操作方法は<%= link_to 'こちら', {:controller => 'toppages', :action => 'help' } %> のページで紹介しています。
+          </p>
+        </div>
+      </div>
+      
+      <!-- Footer-->
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>

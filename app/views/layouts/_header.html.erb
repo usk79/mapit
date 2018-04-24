@@ -10,12 +10,12 @@
         </button>
         
         <%= link_to 'Map It !', root_url, class: "navbar-brand" %>
-
-        
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">About</a></li>
+          <li><%= link_to 'Help', '/help'%></li>
+          <li><button type="button" class="headerbtn" data-toggle="modal" data-target="#about_dialog">About</button></li>
+          
           <% if logged_in? %>
             <li><button class="headerbtn" data-toggle="modal" data-target="#signout_dialog">Sign Out</button></li>
           <% else %>
@@ -26,4 +26,6 @@
       </div>
     </div>
   </nav>
+  
+  <%= render 'layouts/about' %>
 </header>

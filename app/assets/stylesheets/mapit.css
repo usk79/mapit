@@ -313,6 +313,80 @@ h3 {
   position: relative;
 }
 
+/* About Help*/
+.about_box {
+    height: 400px;
+    font-size: 1.3em;
+    overflow-y: auto;
+}
+
+.about_box h2, 
+.help_box h2{
+  margin: 10px 30px 10px 30px;
+  padding: 0;
+  text-align:left;
+  color: #5389d6;
+  font-size: 1.5em;
+}
+
+
+
+.about_box h2:after,
+.help_box h2:after{
+  background-color: #5389d6;
+  border-radius: 3px; /* 線幅の半分 */
+  content: "";
+  display: block;
+  height: 6px;
+}
+
+.about_box h3 {
+  margin: 10px 30px 10px 30px;
+  font-size: 1.3em;
+}
+
+.about_box h4 {
+  margin: 10px 30px 10px 30px;
+  font-size: 1em;
+}
+
+.about_box p {
+    margin: 20px 30px 20px 40px;
+}
+
+.about_box ol,
+.help_box ol{
+    margin-left: 30px;
+}
+
+.help_box {
+    font-size: 1.3em;
+    background-color: #fff;
+     border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.help_box h1 {
+    padding: 0 0 0 20px;
+}
+
+.help_box h2 { /* ページ内リンク先をヘッダの高さ分だけ位置をずらす調整 */
+    margin-top: -60px;
+    padding-top: 60px;
+}
+
+.help_box p {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.help_box .toindex {
+    width: 100%;
+    padding-right: 20px;
+    text-align: right;
+}
+
 @media screen and (min-width: 768px) {
     .cover {
     width:100%;
