@@ -20,28 +20,25 @@ class PointsController < ApplicationController
     
     @point = @collection.points.build(prms)
     
-    flash.now[:danger] = prms
-    render :new
-    
-#    if prms[:lat] == nil || prms[:lng] == nil
-#      flash.now[:danger] = '座標情報がありません。'
-#      render :new
-#    elsif @point == nil
-#      flash.now[:danger] = 'ポイントの追加に失敗しました。'
-#      render :new
-#    else
-#      if @point.save
-#        
-#        @collection.touch #タイムスタンプを更新
-#        @collection.save  
-#        
-#        flash[:success] = 'ポイントをコレクションしました!'
-#        redirect_to controller: 'collections', action: 'show', id: @collection
-#      else
-#        flash.now[:danger] = 'ポイントの追加に失敗しました。'
-#        render :new
-#      end
-#    end
+    if prms[:lat] == nil || prms[:lng] == nil
+      flash.now[:danger] = '座標情報がありません。'
+      render :new
+    elsif @point == nil
+      flash.now[:danger] = 'ポイントの追加に失敗しました。'
+      render :new
+    else
+      if @point.save
+        
+        @collection.touch #タイムスタンプを更新
+        @collection.save  
+        
+        flash[:success] = 'ポイントをコレクションしました!'
+        redirect_to controller: 'collections', action: 'show', id: @collection
+      else
+        flash.now[:danger] = 'ポイントの追加に失敗しました。'
+        render :new
+      end
+    end
     
   end
   

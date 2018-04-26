@@ -5,6 +5,7 @@
         <div class="col-xs-12 col-sm-6 col-sm-offset-0 col-md-4">
           <div class="pointlist_box">
             <div class="leftbox">
+              <%= item.image? %>
               <span><%= image_tag '/images/pin_rd.png', size: '15x24'%><%= item.name %></span>
               <p>緯度：<%= sprintf("%.3f", item.lat) %></p>
               <p>経度：<%= sprintf("%.3f", item.lng)  %></p>
