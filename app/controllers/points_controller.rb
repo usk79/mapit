@@ -57,9 +57,6 @@ class PointsController < ApplicationController
     
     prms = point_params
     
-    flash.now[:danger] = 'ポイント情報の更新に失敗しました。'
-    render :edit
-    
     if prms[:lat] == nil || prms[:lng] == nil
       flash.now[:danger] = '座標情報がありません。'
       render :edit
