@@ -20,7 +20,7 @@ class PointsController < ApplicationController
     
     @point = @collection.points.build(prms)
     
-    flash.now[:danger] = prms[:image]
+    flash.now[:danger] = prms
     render :new
     
 #    if prms[:lat] == nil || prms[:lng] == nil
