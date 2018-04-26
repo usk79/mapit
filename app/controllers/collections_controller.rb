@@ -65,7 +65,7 @@ class CollectionsController < ApplicationController
         current_user.follow(@collection)
       end
       
-      prms[:image] = @collection.image if !prms[:image]
+      prms[:image] ||= @collection.image
       
       if @collection.update(prms)
         flash[:success] = 'コレクション情報を更新しました!'
